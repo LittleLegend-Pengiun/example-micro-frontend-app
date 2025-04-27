@@ -1,0 +1,25 @@
+{
+  "remotes": [
+    {
+      "url": "http://localhost:3001/remoteEntry.js",
+      "scope": "remote",
+      "module": "./mount1"
+    },
+    {
+      "url": "http://localhost:3001/remoteEntry.js",
+      "scope": "remote",
+      "module": "./mount1"
+    },
+
+    {
+      "url": "http://localhost:3002/remoteEntry.js",
+      "scope": "remote",
+      "module": "./mount2"
+    },
+    {
+      "url": "http://localhost:3003/remoteEntry.js",
+      "scope": "remote",
+      "module": "./mount1"
+    }
+  ]
+}

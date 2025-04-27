@@ -28,6 +28,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./mount1": "./src/bootstrap",
+        "./mount2": "./src/bootstrap",
       },
       shared: { react: { singleton: true }, "react-dom": { singleton: true } },
     }),

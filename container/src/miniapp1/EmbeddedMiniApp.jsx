@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { createRoot } from "react-dom/client";
-import { loadRemote } from "./loadRemoteModule";
+import { loadRemote } from "../loadRemoteModule";
 import remoteConfigs from "./remoteConfigs.json";
 
-const EmbbededMiniApp = () => {
+const EmbeddedMiniApp = () => {
   const mountRefs = useRef([]);
 
   useEffect(() => {
@@ -21,17 +20,61 @@ const EmbbededMiniApp = () => {
 
   return (
     <div>
-      <h1>Container App</h1>
       {remoteConfigs.remotes.map((_, index) => (
         <div
           key={index}
           ref={(el) => (mountRefs.current[index] = el)}
-          style={{ border: "1px dashed #ccc", padding: "10px", marginBottom: "10px" }}
+          style={{
+            border: "1px dashed #ccc",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
         />
       ))}
+
+      {/* <div>
+        <div
+          key={index}
+          ref={(el) => (mountRefs.current[0] = el)}
+          style={{
+            border: "1px dashed #ccc",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
+        <div
+          key={index}
+          ref={(el) => (mountRefs.current[1] = el)}
+          style={{
+            border: "1px dashed #ccc",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
+      </div>
+
+      <div>
+        <div
+          key={index}
+          ref={(el) => (mountRefs.current[2] = el)}
+          style={{
+            border: "1px dashed #ccc",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
+        <div
+          key={index}
+          ref={(el) => (mountRefs.current[3] = el)}
+          style={{
+            border: "1px dashed #ccc",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
+      </div> */}
     </div>
   );
 };
 
-const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+export default EmbeddedMiniApp;

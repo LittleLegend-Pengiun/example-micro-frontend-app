@@ -1,0 +1,15 @@
+{
+  "webpackModuleFederation": {
+    "name": "remote",
+    "filename": "remoteEntry.js",
+    "exposes": {
+      "./mount": "./bootstrap"
+    },
+    "shared": {
+      "react": { "singleton": true },
+      "react-dom": { "singleton": true }
+    }
+  },
+  "port": 3001,
+  "entry": "./index.jsx"
+}

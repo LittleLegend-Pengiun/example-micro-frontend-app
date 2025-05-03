@@ -1,15 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Button from "./Button";
+import MiniApp from "./src/MiniApp";
 
 export function mount(el) {
   const root = createRoot(el);
-  root.render(
-    <div>
-      <h2>Remote App</h2>
-      <Button />
-    </div>
-  );
+  root.render(<MiniApp />);
 }
 
 // Auto-render if run as standalone (e.g. localhost:3001)

@@ -11,18 +11,12 @@ export async function loadRemote(remoteUrl, scope, module) {
 
     script.onload = async () => {
       const container = window[scope];
-      
-      console.log("loadRemote inside script onload container::", container);
 
       if (!container) return reject(`Remote scope ${scope} not found`);
       await container.init(__webpack_share_scopes__.default);
       const factory = await container.get(module);
 
-      console.log("loadRemote inside script onload factory::", factory);
-
       const Module = factory();
-
-      console.log("loadRemote inside script onload Module::", Module);
 
       resolve(Module);
     };

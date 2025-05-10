@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { createRoot } from "react-dom/client";
-import ExternalComponent from "../helpers/ExternalComponent.jsx"
+import React from "react";
+import ExternalComponent from "../helpers/ExternalComponent.jsx";
 
 const App = () => {
   return (
@@ -17,5 +16,4 @@ const App = () => {
   );
 };
 
-const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+export default App;

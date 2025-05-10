@@ -1,11 +1,12 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const exportConfig = require("../exportConfig.json");
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: "./index.jsx",
   mode: "development",
   devServer: {
-    port: 3001,
+    port: exportConfig.port,
   },
   output: {
     publicPath: "auto",
@@ -23,14 +24,7 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
   plugins: [
-    new ModuleFederationPlugin({
-      name: "remote",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./mount1": "./src/bootstrap",
-      },
-      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
-    }),
+    new ModuleFederationPlugin(exportConfig.webpackModuleFederation),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),

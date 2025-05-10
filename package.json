@@ -1,0 +1,23 @@
+{
+  "name": "micro-frontend-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Atomic micro-frontend app unit",
+  "workspaces": [
+    "shell",
+    "miniapps/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "generate-miniapp": "node cli/generate-miniapp.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.3.0",
+    "readline-sync": "^1.4.10"
+  }
+}

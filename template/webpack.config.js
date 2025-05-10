@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: "./index.jsx",
   mode: "development",
   devServer: {
     port: 3000,

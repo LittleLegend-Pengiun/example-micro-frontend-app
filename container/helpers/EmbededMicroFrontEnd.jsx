@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { loadRemote } from "./loadRemoteModule";
 
-function ExternalComponent({ remoteUrl, scope, module }) {
+function EmbededMicroFrontEnd({ remoteUrl, scope, module }) {
   const mountRef = useRef(null);
   useEffect(() => {
     loadRemote(remoteUrl, scope, module)
@@ -17,4 +17,4 @@ function ExternalComponent({ remoteUrl, scope, module }) {
   return <div ref={mountRef} />;
 }
 
-export default ExternalComponent;
+export default EmbededMicroFrontEnd;

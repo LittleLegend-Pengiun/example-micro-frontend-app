@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const exportConfig = require("../exportConfig.json");
 
 module.exports = {
-  entry: exportConfig.entry,
+  entry: "./index.jsx",
   mode: "development",
   devServer: {
     port: exportConfig.port,

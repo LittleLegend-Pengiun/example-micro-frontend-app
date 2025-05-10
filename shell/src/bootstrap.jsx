@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { loadRemote } from "./loadRemoteModule";
-import EmbeddedMiniApp from "./miniapp1/EmbeddedMiniApp";
+import EmbeddedMiniApp from "./embeddedMiniApp1/EmbeddedMiniApp";
 
 const App = () => {
   return (

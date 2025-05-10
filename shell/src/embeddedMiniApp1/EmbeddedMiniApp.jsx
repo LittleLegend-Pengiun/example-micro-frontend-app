@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { loadRemote } from "../loadRemoteModule";
-import remoteConfigs from "./remoteConfigs.json";
+import remoteConfigs from "./importConfigs.json";
 
 const EmbeddedMiniApp = () => {
   const mountRefs = useRef([]);

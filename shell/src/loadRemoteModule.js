@@ -11,7 +11,7 @@ export async function loadRemote(remoteUrl, scope, module) {
 
     script.onload = async () => {
       const container = window[scope];
-      
+
       console.log("loadRemote inside script onload container::", container);
 
       if (!container) return reject(`Remote scope ${scope} not found`);

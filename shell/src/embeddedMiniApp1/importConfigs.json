@@ -1,0 +1,9 @@
+{
+  "remotes": [
+    {
+      "url": "http://localhost:3001/remoteEntry.js",
+      "scope": "onboarding",
+      "module": "./mount"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "generate-mini-app",
+  "version": "1.0.0",
+  "description": "CLI tool to generate micro-frontend apps",
+  "main": "generate-mini-app.js",
+  "bin": {
+    "generate-mini-app": "./generate-mini-app.js"
+  },
+  "scripts": {
+    "start": "node generate-mini-app.js"
+  },
+  "keywords": [
+    "micro-frontend",
+    "cli",
+    "generator"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.6",
+    "uuid": "^9.0.1"
+  }
+}

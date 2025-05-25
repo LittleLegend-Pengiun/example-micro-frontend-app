@@ -1,5 +1,5 @@
-import React from "./react/node_modules/react/index.js";
-import { createRoot } from "./react/node_modules/react-dom/client.js";
+import React from "react";
+import { createRoot } from "react-dom/client";
 import App from "./src/App";
 
 export function mount(el) {

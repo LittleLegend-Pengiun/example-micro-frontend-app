@@ -1,10 +1,9 @@
-import React from "./react/node_modules/react/index.js";
-import { createRoot } from "./react/node_modules/react-dom/client.js";
-import App from "./src/App";
+import { createApp } from 'vue';
+import App from "./src/App.vue";
 
 export function mount(el) {
-  const root = createRoot(el);
-  root.render(<App />);
+  const app = createApp(App);
+  app.mount(el);
 }
 
 // Auto-render if run as standalone (e.g. localhost:3001)

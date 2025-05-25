@@ -1,36 +1,43 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { ModuleFederationPlugin } = require("webpack").container;
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  entry: "./index.jsx",
-  mode: "development",
+  entry: './src/main.js',
+  mode: 'development',
   devServer: {
-    port: 3000,
+    port: 8080,
+    historyApiFallback: true,
   },
   output: {
-    publicPath: "auto",
+    publicPath: 'auto',
+    clean: true,
+  },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js',
+    },
   },
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-      },
+      { test: /\.vue$/, loader: 'vue-loader' },
+      { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
-  },
-  resolve: {
-    extensions: [".js", ".jsx"],
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
-      remotes: {}, // dynamic loading, so leave this empty
-      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
+      name: 'vueApp',
+      remotes: {},
+      shared: {
+        vue: {
+          singleton: true,
+          requiredVersion: '^3.0.0',
+        },
+      },
     }),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
   ],
 };

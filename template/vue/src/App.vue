@@ -3,9 +3,9 @@
       <h1>{{ packageJson.name }} App</h1>
       <div class="container">
         <EmbededMicroFrontEnd
-          remoteUrl="http://localhost:3001/remoteEntry.js"
+          remoteUrl="http://localhost:3000/remoteEntry.js"
           scope="remote"
-          module="./mount1"
+          module="./mount"
         />
       </div>
     </div>

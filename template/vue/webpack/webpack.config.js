@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './index.js',
   mode: 'development',
   devServer: {
     port: 8080,

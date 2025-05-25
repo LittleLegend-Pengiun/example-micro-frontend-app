@@ -30,6 +30,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'vueApp',
       remotes: {},
+      filename: "remoteEntry.js",
+      exposes: {
+        "./mount": "./bootstrap"
+      },
       shared: {
         vue: {
           singleton: true,

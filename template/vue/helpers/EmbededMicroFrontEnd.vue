@@ -6,7 +6,6 @@
 import { loadRemote } from "./loadRemoteModule";
 
 export default {
-  name: 'RemoteWrapper',
   props: ['remoteUrl', 'scope', 'module'],
   async mounted() {
     loadRemote(this.$props.remoteUrl, this.$props.scope, this.$props.module)

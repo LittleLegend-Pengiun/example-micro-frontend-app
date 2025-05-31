@@ -9,7 +9,7 @@ export function mount(el) {
 
 // Auto-render if run as standalone (e.g. localhost:3001)
 if (process.env.NODE_ENV === "development") {
-  const standaloneRoot = document.getElementById("root");
+  const standaloneRoot = document.getElementById("root-react");
   if (standaloneRoot) {
     mount(standaloneRoot);
   }

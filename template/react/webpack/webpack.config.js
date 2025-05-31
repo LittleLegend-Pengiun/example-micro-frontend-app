@@ -27,6 +27,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "container",
       remotes: {}, // dynamic loading, so leave this empty
+      filename: "remoteEntry.js",
+      exposes: {
+        "./mount": "./bootstrap"
+      },
       shared: { react: { singleton: true }, "react-dom": { singleton: true } },
     }),
     new HtmlWebpackPlugin({

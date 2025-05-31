@@ -2,11 +2,11 @@
   <div>
     <h1>{{ packageJson.name }} App</h1>
     <div class="container">
-      <EmbededMicroFrontEnd
+      <!-- <EmbededMicroFrontEnd
         remoteUrl="http://localhost:3000/remoteEntry.js"
         scope="container"
         module="./mount"
-      />
+      /> -->
     </div>
   </div>
 </template>

@@ -1,5 +1,10 @@
 # LHA-HDT MiniApp Generator
 
+## Publish NPM
+1. Change directory to this folder
+1. Run command `npm login`
+1. Run command `npm publish`
+
 A CLI tool to generate micro-frontend applications using Webpack Module Federation.
 
 ## Installation

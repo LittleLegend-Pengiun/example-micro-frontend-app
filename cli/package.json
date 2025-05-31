@@ -1,20 +1,26 @@
 {
-  "name": "generate-mini-app",
-  "version": "1.0.0",
-  "description": "CLI tool to generate micro-frontend apps",
-  "main": "generate-mini-app.js",
+  "name": "lha-hdt-miniapp-generator",
+  "version": "1.0.1",
+  "description": "CLI tool to generate micro-frontend apps with Module Federation",
+  "main": "bin/generate-mini-app.js",
   "bin": {
-    "generate-mini-app": "./generate-mini-app.js"
+    "lha-hdt-miniapp-generator": "./bin/generate-mini-app.js"
   },
+  "files": [
+    "bin",
+    "template"
+  ],
   "scripts": {
-    "start": "node generate-mini-app.js"
+    "start": "node bin/generate-mini-app.js"
   },
   "keywords": [
     "micro-frontend",
     "cli",
-    "generator"
+    "generator",
+    "module-federation",
+    "webpack"
   ],
-  "author": "",
+  "author": "LHA-HDT",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.2.6",

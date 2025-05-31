@@ -11,7 +11,17 @@ const questions = [
     type: "input",
     name: "appName",
     message: "Enter the name of your mini-app:",
-    default: "mini-app-example",
+    default: "mini_app_example",
+    validate: (input) => {
+      if (input.includes("-")) {
+        return "App name must use underscores (_) instead of hyphens (-). This is a requirement of Webpack Module Federation.";
+      }
+      if (!/^[a-z0-9_]+$/.test(input)) {
+        return "App name can only contain lowercase letters, numbers, and underscores.";
+      }
+      return true;
+    },
+    filter: (input) => input.toLowerCase().replace(/-/g, "_"),
   },
   {
     type: "input",
@@ -45,13 +55,13 @@ async function generateMiniApp() {
     const answers = await inquirer.prompt(questions);
 
     // Create app directory
-    const appDir = path.join(process.cwd(), "..", "mini-apps", answers.appName);
+    const appDir = path.join(process.cwd(), answers.appName);
     if (!fs.existsSync(appDir)) {
       fs.mkdirSync(appDir, { recursive: true });
     }
 
-    // Copy template files
-    const templateDir = path.join(process.cwd(), "..", "template");
+    // Get template directory from package
+    const templateDir = path.join(__dirname, "..", "template");
     copyDir(templateDir, appDir);
 
     // Update package.json

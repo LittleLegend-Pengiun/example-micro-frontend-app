@@ -61,7 +61,7 @@ async function generateMiniApp() {
     }
 
     // Get template directory from package
-    const templateDir = path.join(__dirname, "..", "template");
+    const templateDir = path.join(__dirname, "..", "template", "react");
     copyDir(templateDir, appDir);
 
     // Update package.json

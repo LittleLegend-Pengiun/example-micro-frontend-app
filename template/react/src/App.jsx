@@ -1,6 +1,7 @@
 import React from "react";
 import EmbededMicroFrontEnd from "../helpers/EmbededMicroFrontEnd.jsx";
 import packageJson from "../package.json";
+import EventComponent from "./EventComponent.jsx";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           scope="remote"
           module="./mount1"
         /> */}
+        <EventComponent />
       </div>
     </div>
   );

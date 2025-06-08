@@ -8,10 +8,9 @@ const App = () => {
       <h1>{packageJson.name} App</h1>
       <div style={{ border: "1px dashed #ccc", padding: "10px" }}>
         <EmbededMicroFrontEnd
-          remoteUrl="http://localhost:4200/remoteEntry.js"
-          scope="angularApp"
+          remoteUrl="http://localhost:8080/remoteEntry.js"
+          scope="vueApp"
           module="./mount"
-          type="module"
         />
       </div>
     </div>

@@ -111,6 +111,39 @@
 					}
 				}
 			}
-		}
+    },
+    "microfrontend-loader": {
+      "projectType": "library",
+      "root": "projects/microfrontend-loader",
+      "sourceRoot": "projects/microfrontend-loader/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/microfrontend-loader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/microfrontend-loader/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/microfrontend-loader/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/microfrontend-loader/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
 	}
 }

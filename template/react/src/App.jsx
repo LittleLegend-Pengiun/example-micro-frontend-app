@@ -7,11 +7,11 @@ const App = () => {
     <div>
       <h1>{packageJson.name} App</h1>
       <div style={{ border: "1px dashed #ccc", padding: "10px" }}>
-        <EmbededMicroFrontEnd
+        {/* <EmbededMicroFrontEnd
           remoteUrl="http://localhost:8080/remoteEntry.js"
           scope="vueApp"
           module="./mount"
-        />
+        /> */}
       </div>
     </div>
   );

@@ -7,11 +7,12 @@ const App = () => {
     <div>
       <h1>{packageJson.name} App</h1>
       <div style={{ border: "1px dashed #ccc", padding: "10px" }}>
-        {/* <EmbededMicroFrontEnd
-          remoteUrl="http://localhost:3001/remoteEntry.js"
-          scope="remote"
-          module="./mount1"
-        /> */}
+        <EmbededMicroFrontEnd
+          remoteUrl="http://localhost:4200/remoteEntry.js"
+          scope="angularApp"
+          module="./mount"
+          type="module"
+        />
       </div>
     </div>
   );

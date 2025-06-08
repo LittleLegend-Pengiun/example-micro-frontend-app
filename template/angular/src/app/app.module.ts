@@ -22,6 +22,6 @@ export class AppModule {
 
    ngDoBootstrap() {
      const ce = createCustomElement(AppComponent, {injector: this.injector});
-     customElements.define('angular1-element', ce);
+     customElements.define('angular-element', ce);
    }
 }

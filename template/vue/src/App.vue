@@ -2,8 +2,8 @@
   <div>
     <h1>{{ packageJson.name }} App</h1>
     <div class="container">
-      <EmbededMicroFrontEnd remoteUrl="http://localhost:4200/remoteEntry.js" scope="angularApp" module="./mount"
-        type="module" />
+      <!-- <EmbededMicroFrontEnd remoteUrl="http://localhost:4200/remoteEntry.js" scope="angularApp" module="./mount"
+        type="module" /> -->
     </div>
   </div>
 </template>

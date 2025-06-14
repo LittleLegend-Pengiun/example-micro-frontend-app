@@ -6,40 +6,76 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+<script>
 import {
   receiveEvents,
   removeListener,
   sendEvents,
 } from "../helpers/eventManager";
 
-const message = ref("");
+/**
+ * Vue component that demonstrates inter-framework communication
+ * using CustomEvent-based messaging (e.g., between microfrontends).
+ *
+ * - Sends a `vueMessage` event on button click.
+ * - Listens for `reactMessage` from other apps (e.g., React).
+ *
+ * @component
+ */
+export default {
+  name: "RemoteEventComponent",
 
-function handleClick() {
-  const events = [
-    {
-      name: "vueMessage",
-      detail: `Random number ${new Date().getTime() % 10}`,
+  data() {
+    return {
+      /**
+       * Message received from external `CustomEvent`.
+       * @type {string}
+       */
+      message: "",
+      /**
+       * @type {Array<{ name: string, handler: (event: CustomEvent) => void }>}
+       */
+      listOfHandler: [],
+    };
+  },
+
+  methods: {
+    /**
+     * Emits a `vueMessage` event with a random number.
+     */
+    handleClick() {
+      const events = [
+        {
+          name: "vueMessage",
+          detail: `Random number ${new Date().getTime() % 10}`,
+        },
+      ];
+      sendEvents(events);
     },
-  ];
-  sendEvents(events);
-}
 
-const listOfHandler = [
-  {
-    name: "reactMessage",
-    handler: (event) => {
-      message.value = event.detail;
+    /**
+     * Event handler for `reactMessage` that updates the message state.
+     *
+     * @param {CustomEvent} event
+     */
+    handleReactMessage(event) {
+      this.message = event.detail;
     },
   },
-];
 
-onMounted(() => {
-  receiveEvents(listOfHandler);
-});
+  mounted() {
+    this.listOfHandler = [
+      {
+        name: "reactMessage",
+        handler: this.handleReactMessage,
+      },
+    ];
 
-onUnmounted(() => {
-  removeListener(listOfHandler);
-});
+    receiveEvents(this.listOfHandler);
+  },
+
+  unmounted() {
+    removeListener(this.listOfHandler);
+  },
+};
 </script>

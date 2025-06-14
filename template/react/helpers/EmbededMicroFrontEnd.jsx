@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { loadRemote } from "./loadRemoteModule";
 
-
 /**
  * Embeds a micro frontend module dynamically at runtime using Webpack Module Federation.
  *

@@ -23,18 +23,10 @@ example-micro-frontend-app/
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Install dependencies
+## 🚀 Generate a new microfrontend
 
 ```bash
-npm install
-```
-
-### 2. Generate a new microfrontend
-
-```bash
-node cli/create.mfe.js
+npm run generate-microfrontend-app
 ```
 
 Follow the prompts to:
@@ -50,17 +42,15 @@ This will scaffold a new project folder based on the selected template.
 
 Each framework template includes:
 
-* A minimal project setup (React, Vue 3, or Angular)
+* A minimal project setup (React 19, Vue 3, or Angular 19)
 * Webpack 5 + Module Federation configured to expose a module
 * Development and build scripts
-* A basic UI component for testing integration
 
-These templates are designed to be dropped into a larger microfrontend system, such as one with a host container (not included here).
+These templates are designed to run as both standalone and integrated into another MFE.
 
 ---
 
 ## 🔗 Integration Notes
 
-* These microfrontend templates expose an entry point (`mount` function or component) via **Module Federation**.
-* You can load them dynamically into a container app using Webpack’s remote module loading.
-* Communication between MFEs can be done via `CustomEvent` or shared state libraries.
+* These microfrontend templates expose an entry point (`mount` function) via **Module Federation**.
+* Communication between MFEs can be done via `CustomEvent`.

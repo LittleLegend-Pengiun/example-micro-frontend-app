@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-mini-app": "cd cli && npm install && node bin/generate-mini-app.js"
+    "generate-microfrontend-app": "cd cli && npm install && node bin/generate-mini-app.js"
   },
   "author": "",
   "license": "ISC"

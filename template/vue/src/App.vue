@@ -4,11 +4,11 @@
     <div class="container" style="border: 1px dashed #ccc;
     padding: 10px;">
       <EventComponent />
-      <EmbededMicroFrontEnd
+      <!-- <EmbededMicroFrontEnd
         remoteUrl="http://localhost:3000/remoteEntry.js"
         scope="container"
         module="./mount"
-      />
+      /> -->
     </div>
   </div>
 </template>

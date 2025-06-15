@@ -101,7 +101,7 @@ async function generateMiniApp() {
   filename: "remoteEntry.js",
   remotes: {},
   exposes: {
-    "./${answers.exposeKey}": "${answers.exposeValue}",
+    "./${answers.exposeKey}": "./src/${answers.exposeValue}",
   },
 
   shared: share({
@@ -116,6 +116,8 @@ async function generateMiniApp() {
         /module.exports = withModuleFederationPlugin\({[\s\S]*?}\);/,
         newWebpackConfig
       );
+
+      fs.writeFileSync(webpackConfigPath, webpackConfig);
 
       // update angular.json port
       const angularJsonPath = path.join(appDir, "angular.json");
@@ -140,10 +142,52 @@ async function generateMiniApp() {
       fs.writeFileSync(indexHtmlPath, indexHtml);
 
       // update bootstrap.ts
-      const bootstrapPath = path.join(appDir, "src", "bootstrap.ts");
-      let bootstrap = fs.readFileSync(bootstrapPath, "utf8");
+      const oldBootstrapPath = path.join(appDir, "src", "bootstrap.ts");
+      const bootstrapPath = path.join(
+        appDir,
+        "src",
+        `${answers.exposeValue}.ts`
+      );
+
+      let bootstrap = fs.readFileSync(oldBootstrapPath, "utf8");
+
+      fs.renameSync(oldBootstrapPath, bootstrapPath);
+
       bootstrap = bootstrap.replaceAll("app-root", uniqueId);
+      bootstrap = bootstrap.replaceAll(
+        "angular-element",
+        `${answers.appName}-element`
+      );
       fs.writeFileSync(bootstrapPath, bootstrap);
+
+      // update app.component.ts
+      const appComponentPath = path.join(
+        appDir,
+        "src",
+        "app",
+        "app.component.ts"
+      );
+      let appComponent = fs.readFileSync(appComponentPath, "utf8");
+      appComponent = appComponent.replaceAll(
+        "angular-element",
+        `${answers.appName}-element`
+      );
+      fs.writeFileSync(appComponentPath, appComponent);
+
+      // update app.module.ts
+      const appModulePath = path.join(appDir, "src", "app", "app.module.ts");
+      let appModule = fs.readFileSync(appModulePath, "utf8");
+      appModule = appModule.replaceAll(
+        "angular-element",
+        `${answers.appName}-element`
+      );
+      fs.writeFileSync(appModulePath, appModule);
+
+      // update main.ts
+      const mainPath = path.join(appDir, "src", "main.ts");
+      let main = fs.readFileSync(mainPath, "utf8");
+      main = main.replaceAll("./bootstrap", `./${answers.exposeValue}`);
+      fs.writeFileSync(mainPath, main);
 
       console.log("\n🎉 Mini-app generated successfully!");
       console.log(`\nTo get started:

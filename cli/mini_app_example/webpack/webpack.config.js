@@ -6,7 +6,7 @@ module.exports = {
   entry: "./index.jsx",
   mode: "development",
   devServer: {
-    port: 8080,
+    port: 3000,
     historyApiFallback: true,
   },
   output: {
@@ -27,19 +27,14 @@ module.exports = {
     ],
   },
   plugins: [
+    
     new ModuleFederationPlugin({
-      name: "vueApp",
-      remotes: {},
+      name: "mini_app_example",
       filename: "remoteEntry.js",
       exposes: {
-        "./mount": "./bootstrap.jsx",
+        "./mount": "./bootstrap"
       },
-      shared: {
-        vue: {
-          singleton: true,
-          requiredVersion: "^3.0.0",
-        },
-      },
+      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({ template: "./public/index.html" }),

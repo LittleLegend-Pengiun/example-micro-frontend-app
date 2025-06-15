@@ -1,10 +1,10 @@
-export async function loadRemote(remoteUrl, scope, module) {
+export async function loadRemote(remoteUrl, scope, module, type) {
   await __webpack_init_sharing__("default");
 
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.src = remoteUrl;
-    script.type = "text/javascript";
+    script.type = type;
     script.async = true;
 
     console.log("loadRemote inside script::", script);

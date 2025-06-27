@@ -39,7 +39,7 @@ This will scaffold a new project folder based on the selected template.
 
 ---
 
-## 🧰 What’s Included in Each Template
+## 🧰 What's Included in Each Template
 
 ### Overview
 
@@ -62,6 +62,8 @@ Each template includes:
 
 #### 📁 Structure
 
+The template looks nearly the same as a blank SPA.
+
 ```
 template/react/
 ├── src/                    # Contain app source code
@@ -69,7 +71,7 @@ template/react/
 ├── webpack/
 |   └── webpack.config.js   # Config for ModuleFederation
 ├── public/
-|   └── index.html
+|   └── index.html          # Starting point
 ├── .babelrc
 ├── index.jsx
 └── bootstrap.jsx
@@ -81,7 +83,7 @@ template/react/
 // webpack.config.js (React)
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
+      name: "appName",
       remotes: {}, // dynamic loading, so leave this empty
       filename: "remoteEntry.js",
       exposes: {
@@ -99,11 +101,15 @@ template/react/
 
 ```jsx
 <EmbededMicroFrontEnd
-    remoteUrl="http://localhost:3001/remoteEntry.js"
-    scope="remote"
-    module="./mount1"
+  remoteUrl="http://localhost:3001/remoteEntry.js"
+  scope="appName"
+  module="./mount"
 />
 ```
+To render other microfrontend, you can leverage `EmbededMicroFrontEnd` built-in component, which required 3 parameters:
+- `remoteUrl`: the child app URL (`http://localhost:3001`) + ModuleFederation file name (`remoteEntry.js`).
+- `scope`: the scope to load all the content of the child app, which is ModuleFederation app name (`appName`).
+- `module`: the exposed entry point of `bootstrap`, comes from `ModuleFederationPlugin.exposes` (`./mount`)
 
 #### 🔄 Communication Between MFEs
 
@@ -127,6 +133,7 @@ window.addEventListener('shared-message', (event) => {
 
 ---
 ### Angular template
+
 ---
 
 ## 🔗 Integration Notes

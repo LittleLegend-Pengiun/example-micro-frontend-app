@@ -1,6 +1,7 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { createCustomElement } from '@angular/elements';
+import { MicrofrontendLoaderModule } from 'microfrontend-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +12,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MicrofrontendLoaderModule
   ],
   providers: [],
   bootstrap: []

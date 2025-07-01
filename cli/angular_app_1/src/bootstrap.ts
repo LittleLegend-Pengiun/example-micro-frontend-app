@@ -25,7 +25,7 @@ export function mount(el: HTMLElement | Element) {
   el.appendChild(angularElement);
 }
 
-const standaloneRoot = document.querySelector("app-root");
+const standaloneRoot = document.querySelector("app-root-b0c3f347-218f-47c3-b144-f50ead9cb371");
 if (standaloneRoot) {
   mount(standaloneRoot);
 }

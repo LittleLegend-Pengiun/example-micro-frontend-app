@@ -1,0 +1,15 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<h1>{{ appName }} App</h1>
+<router-outlet />
+
+<app-embedded-microfrontend remoteUrl="http://localhost:4202/remoteEntry.js" scope="angular_app_2" module="./mount"
+    type="module">
+</app-embedded-microfrontend>

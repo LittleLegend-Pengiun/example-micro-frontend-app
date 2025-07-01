@@ -21,6 +21,16 @@
 export async function loadRemote(remoteUrl, scope, module, type) {
   await __webpack_init_sharing__("default");
 
+  // Check if this is an Angular microfrontend (ES module)
+  if (
+    type === "module" ||
+    remoteUrl.includes("angular") ||
+    scope === "angular"
+  ) {
+    return loadAngularRemote(remoteUrl, scope, module);
+  }
+
+  // Original logic for React/Vue microfrontends
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.src = remoteUrl;
@@ -45,4 +55,24 @@ export async function loadRemote(remoteUrl, scope, module, type) {
     script.onerror = () => reject(`Failed to load remote: ${remoteUrl}`);
     document.head.appendChild(script);
   });
+}
+
+// New function to handle Angular ES module remotes
+async function loadAngularRemote(remoteUrl, scope, module) {
+  try {
+    // Use dynamic import for ES modules
+    const container = await import(/* webpackIgnore: true */ remoteUrl);
+    console.log("container::", container);
+
+    // Initialize the container with shared scope
+    await container.init(__webpack_share_scopes__.default);
+
+    // Get the specific module (e.g., "./mount")
+    const factory = await container.get(module);
+    const Module = factory();
+
+    return Module;
+  } catch (error) {
+    throw new Error(`Failed to load Angular remote: ${error.message}`);
+  }
 }

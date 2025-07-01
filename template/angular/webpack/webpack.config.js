@@ -19,36 +19,3 @@ module.exports = withModuleFederationPlugin({
     rxjs: { requiredVersion: "auto" },
   }),
 });
-
-// module.exports = {
-//   entry: "./src/bootstrap.ts",
-//   mode: "development",
-//   devServer: {
-//     port: 4200,
-//     historyApiFallback: true,
-//   },
-//   output: {
-//     publicPath: "auto",
-//     clean: true,
-//   },
-//   resolve: {
-//     extensions: [".ts", ".js", ".html"],
-//   },
-//   module: {
-//     rules: [
-//       { test: /\.ts$/, loader: "ts-loader" },
-//       { test: /\.html$/, loader: "html-loader" },
-//     ],
-//   },
-//   plugins: [
-//     new ModuleFederationPlugin({
-//       name: "angularApp",
-//       remotes: {},
-//       filename: "remoteEntry.js",
-//       exposes: {
-//         "./mount": "./src/bootstrap.ts",
-//       },
-//       shared: {},
-//     }),
-//   ],
-// };

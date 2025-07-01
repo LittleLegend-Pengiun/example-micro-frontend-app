@@ -3,12 +3,12 @@
     <h1>{{ packageJson.name }} App</h1>
     <div class="container" style="border: 1px dashed #ccc;
     padding: 10px;">
-      <EventComponent />
+      <!-- <EventComponent />
       <EmbededMicroFrontEnd
         remoteUrl="http://localhost:3000/remoteEntry.js"
         scope="container"
         module="./mount"
-      />
+      /> -->
     </div>
   </div>
 </template>

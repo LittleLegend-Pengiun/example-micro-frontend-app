@@ -8,7 +8,7 @@ const App = () => {
     <div>
       <h1>{packageJson.name} App</h1>
       <div style={{ border: "1px dashed #ccc", padding: "10px" }}>
-        <EventComponent />
+        {/* <EventComponent /> */}
         {/* <EmbededMicroFrontEnd
           remoteUrl="http://localhost:3001/remoteEntry.js"
           scope="remote"

@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  entry: "./index.jsx",
+  entry: "./index.js",
   mode: "development",
   devServer: {
     port: 8080,
@@ -32,7 +32,7 @@ module.exports = {
       remotes: {},
       filename: "remoteEntry.js",
       exposes: {
-        "./mount": "./bootstrap.jsx",
+        "./mount": "./bootstrap.js",
       },
       shared: {
         vue: {

@@ -2,9 +2,14 @@
   "name": "micro-frontend-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
+<<<<<<< HEAD
     "generate-microfrontend-app": "cd cli && npm install && node bin/generate-mini-app.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-mini-app": "cd cli && node bin/generate-mini-app.js"
+>>>>>>> 3f4bf26 (feat: support multiple framework options)
   },
   "author": "",
   "license": "ISC"

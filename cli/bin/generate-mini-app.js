@@ -9,6 +9,18 @@ const { v4: uuidv4 } = require("uuid");
 const questions = [
   {
     type: "input",
+    name: "framework",
+    message: "Select the framework you want to use:",
+    default: "react",
+    validate: (input) => {
+      if (input !== "react" && input !== "vue" && input !== "angular") {
+        return "Invalid framework. Please select from react, vue, or angular.";
+      }
+      return true;
+    },
+  },
+  {
+    type: "input",
     name: "appName",
     message: "Enter the name of your mini-app:",
     default: "mini_app_example",
@@ -61,7 +73,13 @@ async function generateMiniApp() {
     }
 
     // Get template directory from package
-    const templateDir = path.join(__dirname, "..", "..", "template", "react");
+    const templateDir = path.join(
+      __dirname,
+      "..",
+      "..",
+      "template",
+      answers.framework
+    );
     copyDir(templateDir, appDir);
 
     // Update package.json
@@ -108,7 +126,10 @@ async function generateMiniApp() {
     fs.writeFileSync(indexHtmlPath, indexHtml);
 
     // Update bootstrap.jsx with unique ID
-    const bootstrapPath = path.join(appDir, "bootstrap.jsx");
+    const bootstrapPath = path.join(
+      appDir,
+      answers.framework === "react" ? "bootstrap.jsx" : "bootstrap.js"
+    );
     let bootstrap = fs.readFileSync(bootstrapPath, "utf8");
     bootstrap = bootstrap.replace(
       /getElementById\("root"\)/,

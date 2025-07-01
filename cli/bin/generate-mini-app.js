@@ -44,8 +44,18 @@ const questions = [
   {
     type: "input",
     name: "exposeValue",
-    message: "Enter the expose value (e.g., ./bootstrap):",
-    default: "./bootstrap",
+    message: (answers) => {
+      if (answers.framework === "angular") {
+        return "Expose value (auto-generated UUID, press Enter to accept):";
+      }
+      return "Enter the expose value (e.g., ./bootstrap):";
+    },
+    default: (answers) => {
+      if (answers.framework === "angular") {
+        return `bootstrap_${uuidv4().replace(/-/g, "_")}`;
+      }
+      return "./bootstrap";
+    },
   },
   {
     type: "input",

@@ -137,3 +137,6 @@ dist
 
 # Mini-apps
 mini-apps/**
+
+# Playground
+playground/**

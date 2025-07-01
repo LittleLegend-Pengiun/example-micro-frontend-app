@@ -22,10 +22,10 @@ import { loadRemote } from "./loadRemoteModule";
  *
  * @returns {JSX.Element} A `div` element where the remote component will be mounted.
  */
-function EmbededMicroFrontEnd({ remoteUrl, scope, module }) {
+function EmbededMicroFrontEnd({ remoteUrl, scope, module, type = "text/javascript" }) {
   const mountRef = useRef(null);
   useEffect(() => {
-    loadRemote(remoteUrl, scope, module)
+    loadRemote(remoteUrl, scope, module, type)
       .then((remote) => {
         console.log("loadRemote then moute::", remote);
         remote.mount(mountRef.current);
@@ -33,7 +33,6 @@ function EmbededMicroFrontEnd({ remoteUrl, scope, module }) {
       .catch((err) => {
         console.error("Failed to load remote:", err);
       });
-    
   }, []);
   return <div ref={mountRef} />;
 }

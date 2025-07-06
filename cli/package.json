@@ -1,17 +1,17 @@
 {
-  "name": "lha-hdt-miniapp-generator",
-  "version": "1.0.1",
-  "description": "CLI tool to generate micro-frontend apps with Module Federation",
-  "main": "bin/generate-mini-app.js",
+  "name": "3xmf-miniapp-generator",
+  "version": "1.0.0",
+  "description": "Multi-Framework Micro-Frontend Module Federation - CLI tool to generate micro-frontend apps with Module Federation",
+  "main": "bin/generate-microfrontend-app.js",
   "bin": {
-    "lha-hdt-miniapp-generator": "./bin/generate-mini-app.js"
+    "3xmf-miniapp-generator": "./bin/generate-microfrontend-app.js"
   },
   "files": [
     "bin",
     "template"
   ],
   "scripts": {
-    "start": "node bin/generate-mini-app.js"
+    "start": "node bin/generate-microfrontend-app.js"
   },
   "keywords": [
     "micro-frontend",
@@ -20,7 +20,10 @@
     "module-federation",
     "webpack"
   ],
-  "author": "LHA-HDT",
+  "author": [
+    "hoanganhleboy@gmail.com",
+    "hdthinh01@gmail.com"
+  ],
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.2.6",

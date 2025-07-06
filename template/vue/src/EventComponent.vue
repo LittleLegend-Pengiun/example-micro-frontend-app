@@ -18,7 +18,7 @@ import {
  * using CustomEvent-based messaging (e.g., between microfrontends).
  *
  * - Sends a `vueMessage` event on button click.
- * - Listens for `reactMessage` from other apps (e.g., React).
+ * - Listens for `reactMessage` and `angularMessage` from other apps.
  *
  * @component
  */
@@ -59,7 +59,16 @@ export default {
      * @param {CustomEvent} event
      */
     handleReactMessage(event) {
-      this.message = event.detail;
+      this.message = `React: ${event.detail}`;
+    },
+
+    /**
+     * Event handler for `angularMessage` that updates the message state.
+     *
+     * @param {CustomEvent} event
+     */
+    handleAngularMessage(event) {
+      this.message = `Angular: ${event.detail}`;
     },
   },
 
@@ -68,6 +77,10 @@ export default {
       {
         name: "reactMessage",
         handler: this.handleReactMessage,
+      },
+      {
+        name: "angularMessage",
+        handler: this.handleAngularMessage,
       },
     ];
 

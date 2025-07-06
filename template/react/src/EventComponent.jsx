@@ -3,7 +3,7 @@ import { receiveEvents, removeListener, sendEvents } from "../helpers/eventManag
 
 /**
  * React component that demonstrates cross-framework communication using `CustomEvent`.
- * It listens for events from other microfrontends (e.g. Vue), and can dispatch events
+ * It listens for events from other microfrontends (Vue and Angular), and can dispatch events
  * to other frameworks.
  *
  * @component
@@ -12,8 +12,9 @@ import { receiveEvents, removeListener, sendEvents } from "../helpers/eventManag
  * // Inside a React app
  * <EventComponent />
  *
- * // Expected integration in another app (e.g. Vue) to send an event:
+ * // Expected integration in other apps to send events:
  * window.dispatchEvent(new CustomEvent("vueMessage", { detail: "Hello from Vue!" }));
+ * window.dispatchEvent(new CustomEvent("angularMessage", { detail: "Hello from Angular!" }));
  */
 const EventComponent = () => {
   const [message, setMessage] = React.useState("");
@@ -36,7 +37,7 @@ const EventComponent = () => {
 
   /**
    * Event handler list for receiving events from other apps.
-   * In this case, listens for `vueMessage` and updates the message state.
+   * Listens for events from Vue and Angular microfrontends.
    *
    * @type {Array<{ name: string, handler: (event: CustomEvent) => void }>}
    */
@@ -44,7 +45,13 @@ const EventComponent = () => {
     {
       name: "vueMessage",
       handler: (event) => {
-        setMessage(event.detail);
+        setMessage(`Vue: ${event.detail}`);
+      },
+    },
+    {
+      name: "angularMessage",
+      handler: (event) => {
+        setMessage(`Angular: ${event.detail}`);
       },
     },
   ];

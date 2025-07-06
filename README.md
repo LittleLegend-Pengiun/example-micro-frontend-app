@@ -134,6 +134,114 @@ window.addEventListener('shared-message', (event) => {
 ---
 ### Angular template
 
+For viewing JSDoc for some predefined component in Angular template, please install [Angular Service Language](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) extension.
+
+The Angular template includes:
+
+* Angular 19 with Module Federation setup via `@angular-architects/module-federation`
+* An exposed `mount` function for remote mounting
+* A microfrontend loader library for integrating other MFEs
+* Custom elements support for seamless integration
+
+#### Setup commands
+```
+npm run install
+ng build microfrontend-loader # Build library for <app-embedded-microfrontend> usage
+ng build event-component # Build library for <lib-event-component> usage
+npm run start
+```
+
+Reminder: For any changes in the library folders (*projects/event-component/*, *projects/microfrontend-loader/*), rerun *ng build event-component* and *ng build microfrontend-loader* for angular to detect.
+
+#### 📁 Structure
+
+```
+template/angular/
+├── src/                        # Main application source code
+│   ├── app/                    # Angular app module and components
+│   ├── bootstrap.ts            # Module Federation bootstrap entry point
+│   └── main.ts                 # Application entry point
+├── projects/
+│   └── microfrontend-loader/   # Library for loading other MFEs
+│       └── src/lib/
+│           ├── components/
+│           │   └── embedded-microfrontend/
+│           └── services/
+├── webpack/
+│   └── webpack.config.js       # Module Federation configuration
+├── public/
+│   └── index.html             # Starting point
+└── angular.json               # Angular CLI configuration
+```
+
+#### 🔧 Module Federation
+
+```js
+// webpack.config.js (Angular)
+module.exports = withModuleFederationPlugin({
+  name: "angularApp",
+  filename: "remoteEntry.js",
+  remotes: {},
+  exposes: {
+    "./mount": "./src/bootstrap.ts",
+  },
+  shared: share({
+    "@angular/core": { requiredVersion: "auto" },
+    "@angular/common": { requiredVersion: "auto" },
+    "@angular/router": { requiredVersion: "auto" },
+    rxjs: { requiredVersion: "auto" },
+  }),
+});
+```
+
+#### 🧪 Integrate other MFE
+
+Importing React/Vue
+```html
+<app-embedded-microfrontend
+  remoteUrl="http://localhost:3001/remoteEntry.js"
+  scope="appName"
+  module="./mount">
+</app-embedded-microfrontend>
+```
+Importing Angular
+```html
+<app-embedded-microfrontend
+  remoteUrl="http://localhost:4201/remoteEntry.js"
+  scope="does-not-matter"
+  module="./mount"
+  type="module"  >
+</app-embedded-microfrontend>
+```
+
+To render other microfrontends, use the `EmbeddedMicrofrontendComponent` from the microfrontend-loader library, which requires 3 parameters:
+- `remoteUrl`: the child app URL (`http://localhost:3001`) + ModuleFederation file name (`remoteEntry.js`)
+- `scope`: the scope to load all the content of the child app, which is ModuleFederation app name (`appName`)
+- `module`: the exposed entry point of `bootstrap`, comes from `ModuleFederationPlugin.exposes` (`./mount`)
+- `type`: passed 'module' value incase of importing an ESModule entry points, else just leave empty.
+
+#### 🔄 Communication Between MFEs
+
+Use the `CustomEvent` API for framework-agnostic event communication:
+
+##### Listen to events (in Angular MFE)
+
+```typescript
+// In your Angular component
+ngOnInit() {
+  window.addEventListener('shared-message', (event: any) => {
+    console.log('Received message:', event.detail);
+    // Handle the received data
+    this.handleSharedMessage(event.detail);
+  });
+}
+
+ngOnDestroy() {
+  // Clean up event listeners
+  window.removeEventListener('shared-message', this.handleSharedMessage);
+}
+```
+
 ---
 
 ## 🔗 Integration Notes

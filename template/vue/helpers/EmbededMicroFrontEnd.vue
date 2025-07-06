@@ -24,9 +24,9 @@ import { loadRemote } from "./loadRemoteModule";
  * />
  */
 export default {
-  props: ["remoteUrl", "scope", "module"],
+  props: ['remoteUrl', 'scope', 'module', 'type'],
   async mounted() {
-    loadRemote(this.$props.remoteUrl, this.$props.scope, this.$props.module)
+    loadRemote(this.$props.remoteUrl, this.$props.scope, this.$props.module, this.$props.type || "text/javascript")
     .then((remote) => {
       console.log("loadRemote then mount::", remote);
       remote.mount(this.$refs.remoteContainer);

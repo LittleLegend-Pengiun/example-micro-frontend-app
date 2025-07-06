@@ -2,9 +2,8 @@
   "name": "micro-frontend-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "generate-microfrontend-app": "cd cli && npm install && node bin/generate-mini-app.js"
+    "generate-microfrontend-app": "cd cli && npm install && node bin/generate-microfrontend-app.js"
   },
   "author": "",
   "license": "ISC"

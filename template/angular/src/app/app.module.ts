@@ -2,7 +2,7 @@ import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { createCustomElement } from '@angular/elements';
 import { MicrofrontendLoaderModule } from 'microfrontend-loader';
-
+import { EventComponentModule } from 'event-component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -13,7 +13,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MicrofrontendLoaderModule
+    MicrofrontendLoaderModule,
+    EventComponentModule
   ],
   providers: [],
   bootstrap: []

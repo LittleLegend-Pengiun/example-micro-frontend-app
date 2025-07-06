@@ -10,6 +10,35 @@ import {
 } from '@angular/core';
 import { RemoteLoaderService } from '../../services/remote-loader.service';
 
+/**
+ * EmbeddedMicrofrontendComponent
+ * 
+ * Angular component to dynamically load and mount a remote micro-frontend using Module Federation.
+ * 
+ * @example
+ * <!-- Basic usage in a template -->
+ * <app-embedded-microfrontend
+ *   [remoteUrl]="'http://localhost:4202/remoteEntry.js'"
+ *   [scope]="'container'"
+ *   [module]="'./mount'"
+ *   [type]="'module'">
+ * </app-embedded-microfrontend>
+ * 
+ * @inputs
+ * @param {string} remoteUrl - The URL to the remoteEntry.js of the micro-frontend.
+ * @param {string} scope - The scope name defined in Module Federation for the remote.
+ * @param {string} module - The exposed module to load from the remote.
+ * @param {string} [type='text/javascript'] - The script type for loading the remote (default: 'text/javascript').
+ * 
+ * @description
+ * This component loads a remote micro-frontend at runtime and mounts it inside the host Angular application.
+ * It displays loading and error states as needed.
+ * 
+ * @usageNotes
+ * - All inputs (`remoteUrl`, `scope`, and `module`) are required.
+ * - The remote module must expose a `mount` function (and optionally an `unmount` function).
+ * - The `type` input is optional and defaults to `'text/javascript'`.
+ */
 @Component({
   selector: 'app-embedded-microfrontend',
   template: `

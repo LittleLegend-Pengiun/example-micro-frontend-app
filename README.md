@@ -134,12 +134,24 @@ window.addEventListener('shared-message', (event) => {
 ---
 ### Angular template
 
+For viewing JSDoc for some predefined component in Angular template, please install [Angular Service Language](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) extension.
+
 The Angular template includes:
 
 * Angular 19 with Module Federation setup via `@angular-architects/module-federation`
 * An exposed `mount` function for remote mounting
 * A microfrontend loader library for integrating other MFEs
 * Custom elements support for seamless integration
+
+#### Setup commands
+```
+npm run install
+ng build microfrontend-loader # Build library for <app-embedded-microfrontend> usage
+ng build event-component # Build library for <lib-event-component> usage
+npm run start
+```
+
+Reminder: For any changes in the library folders (*projects/event-component/*, *projects/microfrontend-loader/*), rerun *ng build event-component* and *ng build microfrontend-loader* for angular to detect.
 
 #### 📁 Structure
 

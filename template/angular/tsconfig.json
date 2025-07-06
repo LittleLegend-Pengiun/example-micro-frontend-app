@@ -6,6 +6,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
+      "event-component": [
+        "./dist/event-component"
+      ],
       "microfrontend-loader": [
         "./dist/microfrontend-loader"
       ]

@@ -1,6 +1,6 @@
 {
   "name": "3xmf-miniapp-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Multi-Framework Micro-Frontend Module Federation - CLI tool to generate micro-frontend apps with Module Federation",
   "main": "bin/generate-microfrontend-app.js",
   "bin": {
